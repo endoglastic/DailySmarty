@@ -26,7 +26,7 @@ class TopicsController < ApplicationController
   end
 
   def update
-    # Will set a new slug URL updon update
+    # Will set a new slug URL updn update
     @topic.slug = nil
 
     if @topic.update(topic_params)
