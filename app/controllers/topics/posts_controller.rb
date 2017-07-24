@@ -14,7 +14,8 @@ class Topics::PostsController < ApplicationController
 
   def create
     post = Post.new(post_params)
-
+    post.user_id = current_user.id
+    
     if post.save
       redirect_to topic_post_path(topic_id: post.topic_id, id: post), notice: 'Your post was successfully published.'
     else

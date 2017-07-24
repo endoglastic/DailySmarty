@@ -37,6 +37,9 @@ describe 'post' do
 
   describe 'creation' do
     before do
+      user = FactoryGirl.create(:user)
+      login_as(user, :scope => :user)
+
       visit new_post_path
     end
 
@@ -61,7 +64,14 @@ describe 'post' do
       expect(page).to have_content("Sports")
     end
 
-    xit 'should have a user associated with the post' do
+    it 'should have a user associated with the post' do
+      fill_in 'post[title]', with: "Houston Astros"
+      fill_in 'post[content]', with: "Are going all the way"
+      find_field("post[topic_id]").find("option[value='#{@topic.id}']").click
+
+      click_on "Save"
+
+      expect(page).to have_content("Jon Snow")
     end
   end
 
