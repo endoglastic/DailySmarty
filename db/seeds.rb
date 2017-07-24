@@ -36,3 +36,14 @@ User.create!(
 )
 
 puts "Student user created"
+
+50.times do |post|
+  Post.create!(
+    title: "My Post #{post}",
+    content: "Some amazing content here",
+    topic_id: Topic.last.id,
+    user_id: User.last.id
+  )
+end
+
+puts "50 posts were created"
